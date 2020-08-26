@@ -1,0 +1,10 @@
+### Parameter file for the ACOTSP software
+# name		switch		     type	values			[conditions (using R syntax)]
+population       "-p"                 i		(10, 1000)
+popElite        "-e"     	      r  	(0.1, 0.7)
+popMutants      "-m"                 r  	(0.1, 0.5)
+rhoe             "-r"                 r  	(0.51, 1.0)
+independent      "-K"                 i  	(1, 5)
+exchangeBest     "-b"                 i	        (2, 100)
+exchangeTop      "-x"                 i  	(1, 5)
+

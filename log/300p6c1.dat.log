@@ -1,0 +1,232 @@
+Execução 1 
+Best solution 0.642391 from pop 8
+New best 0.645977 from pop 7
+New best 0.649143 from pop 9
+Best solution 0.649143 from pop 9 k = 11
+Total time = 30.1941
+Time to Best ttb = 24.6723
+ 
+Execução 2 
+Best solution 0.63511 from pop 7
+New best 0.640673 from pop 7
+New best 0.641639 from pop 8
+New best 0.642368 from pop 10
+New best 0.646843 from pop 7
+New best 0.648357 from pop 9
+Best solution 0.648357 from pop 9 k = 11
+Total time = 30.1732
+Time to Best ttb = 23.5321
+ 
+Execução 3 
+Best solution 0.64087 from pop 8
+New best 0.649814 from pop 9
+Best solution 0.649814 from pop 9 k = 11
+Total time = 30.4235
+Time to Best ttb = 16.0861
+ 
+Execução 4 
+Best solution 0.640077 from pop 7
+New best 0.642369 from pop 10
+New best 0.649492 from pop 8
+Best solution 0.649492 from pop 8 k = 10
+Total time = 30.4218
+Time to Best ttb = 23.1877
+ 
+Execução 5 
+Best solution 0.645428 from pop 7
+Best solution 0.645428 from pop 7 k = 9
+Total time = 30.1995
+Time to Best ttb = 0
+ 
+Execução 6 
+Best solution 0.637422 from pop 7
+New best 0.643641 from pop 9
+New best 0.646716 from pop 7
+Best solution 0.646716 from pop 7 k = 9
+Total time = 30.1932
+Time to Best ttb = 24.8621
+ 
+Execução 7 
+Best solution 0.640367 from pop 8
+New best 0.651495 from pop 11
+Best solution 0.651495 from pop 11 k = 13
+Total time = 30.5136
+Time to Best ttb = 20.6337
+ 
+Execução 8 
+Best solution 0.645694 from pop 8
+New best 0.654849 from pop 9
+Best solution 0.654849 from pop 9 k = 11
+Total time = 30.2598
+Time to Best ttb = 13.2169
+ 
+Execução 9 
+Best solution 0.645428 from pop 7
+Best solution 0.645428 from pop 7 k = 9
+Total time = 30.5766
+Time to Best ttb = 0
+ 
+Execução 10 
+Best solution 0.643087 from pop 7
+New best 0.646872 from pop 8
+New best 0.647599 from pop 9
+Best solution 0.647599 from pop 9 k = 11
+Total time = 30.0394
+Time to Best ttb = 24.9907
+ 
+Execução 11 
+Best solution 0.643085 from pop 7
+New best 0.643221 from pop 7
+New best 0.650485 from pop 8
+New best 0.652642 from pop 10
+Best solution 0.652642 from pop 10 k = 12
+Total time = 30.1137
+Time to Best ttb = 27.3108
+ 
+Execução 12 
+Best solution 0.63471 from pop 11
+New best 0.636965 from pop 8
+New best 0.643624 from pop 8
+New best 0.644622 from pop 9
+New best 0.645982 from pop 8
+New best 0.647904 from pop 8
+Best solution 0.647904 from pop 8 k = 10
+Total time = 30.2214
+Time to Best ttb = 23.965
+ 
+Execução 13 
+Best solution 0.634974 from pop 7
+New best 0.645599 from pop 7
+Best solution 0.645599 from pop 7 k = 9
+Total time = 30.1443
+Time to Best ttb = 11.6958
+ 
+Execução 14 
+Best solution 0.641367 from pop 7
+New best 0.641847 from pop 7
+New best 0.644796 from pop 7
+New best 0.645764 from pop 7
+Best solution 0.645764 from pop 7 k = 9
+Total time = 30.3549
+Time to Best ttb = 30.3549
+ 
+Execução 15 
+Best solution 0.648246 from pop 8
+New best 0.648987 from pop 8
+Best solution 0.648987 from pop 8 k = 10
+Total time = 30.6488
+Time to Best ttb = 18.192
+ 
+Execução 16 
+Best solution 0.649183 from pop 8
+Best solution 0.649183 from pop 8 k = 10
+Total time = 30.1043
+Time to Best ttb = 0
+ 
+Execução 17 
+Best solution 0.645599 from pop 7
+New best 0.653096 from pop 8
+Best solution 0.653096 from pop 8 k = 10
+Total time = 30.3414
+Time to Best ttb = 27.7738
+ 
+Execução 18 
+Best solution 0.643793 from pop 9
+New best 0.645259 from pop 9
+New best 0.654315 from pop 9
+Best solution 0.654315 from pop 9 k = 11
+Total time = 30.3067
+Time to Best ttb = 20.2944
+ 
+Execução 19 
+Best solution 0.635869 from pop 7
+New best 0.645428 from pop 7
+New best 0.646799 from pop 8
+New best 0.650392 from pop 8
+Best solution 0.650392 from pop 8 k = 10
+Total time = 30.4871
+Time to Best ttb = 26.3085
+ 
+Execução 20 
+Best solution 0.644694 from pop 8
+New best 0.652487 from pop 8
+Best solution 0.652487 from pop 8 k = 10
+Total time = 30.4301
+Time to Best ttb = 25.9792
+ 
+Execução 21 
+Best solution 0.643926 from pop 7
+New best 0.651187 from pop 9
+Best solution 0.651187 from pop 9 k = 11
+Total time = 30.3083
+Time to Best ttb = 14.0961
+ 
+Execução 22 
+Best solution 0.637537 from pop 8
+New best 0.645131 from pop 11
+New best 0.646716 from pop 7
+Best solution 0.646716 from pop 7 k = 9
+Total time = 30.4275
+Time to Best ttb = 23.8919
+ 
+Execução 23 
+Best solution 0.653034 from pop 8
+Best solution 0.653034 from pop 8 k = 10
+Total time = 30.2305
+Time to Best ttb = 0
+ 
+Execução 24 
+Best solution 0.643139 from pop 8
+New best 0.645062 from pop 11
+Best solution 0.645062 from pop 11 k = 13
+Total time = 30.6131
+Time to Best ttb = 22.957
+ 
+Execução 25 
+Best solution 0.644864 from pop 8
+New best 0.647342 from pop 8
+Best solution 0.647342 from pop 8 k = 10
+Total time = 30.4317
+Time to Best ttb = 17.0671
+ 
+Execução 26 
+Best solution 0.63827 from pop 10
+New best 0.644052 from pop 9
+New best 0.650781 from pop 8
+Best solution 0.650781 from pop 8 k = 10
+Total time = 30.1195
+Time to Best ttb = 26.792
+ 
+Execução 27 
+Best solution 0.641173 from pop 8
+New best 0.647042 from pop 8
+Best solution 0.647042 from pop 8 k = 10
+Total time = 30.0499
+Time to Best ttb = 13.7389
+ 
+Execução 28 
+Best solution 0.630063 from pop 7
+New best 0.640672 from pop 8
+New best 0.642052 from pop 7
+New best 0.646195 from pop 8
+New best 0.651353 from pop 9
+New best 0.651684 from pop 8
+New best 0.653096 from pop 8
+Best solution 0.653096 from pop 8 k = 10
+Total time = 30.2405
+Time to Best ttb = 24.2284
+ 
+Execução 29 
+Best solution 0.637675 from pop 7
+New best 0.641445 from pop 9
+Best solution 0.641445 from pop 9 k = 11
+Total time = 30.5579
+Time to Best ttb = 15.2572
+ 
+Execução 30 
+Best solution 0.639632 from pop 7
+New best 0.647047 from pop 8
+Best solution 0.647047 from pop 8 k = 10
+Total time = 30.0745
+Time to Best ttb = 18.6061
+ 
