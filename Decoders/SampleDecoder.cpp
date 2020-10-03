@@ -5,7 +5,7 @@
  *      Author: rtoso
  */
 
-#include "SampleDecoder.h"
+#include "SampleDecoder.hpp"
 #include <iostream>
 #include <cmath>
 

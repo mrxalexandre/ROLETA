@@ -4,26 +4,23 @@
 //
 //******************************************************
 
-#include "bossa_timer.h"
-
-#define INFINITE_TIME 10e100
+#include "BossaTimer.hpp"
 
 //-----------------------------
 // Generic functions
 //-----------------------------
 
-/*
-BossaTimer::BossaTimer () {
-	base_time = 0.0;
-	max_time = 0.0;
-	running = false;
-}*/
+BossaTimer * BossaTimer::def_ap_timer = 0;
 
 BossaTimer::BossaTimer (bool s) {
-	base_time = 0.0;
-	max_time = 0.0;
-	if (s) start();
-	else running = false;
+
+	if( !def_ap_timer ){
+		def_ap_timer = this;
+		base_time = 0.0;
+		max_time = 0.0;
+		if (s) start();
+		else running = false;
+	}
 }
 
 double BossaTimer::getTime() {
@@ -139,3 +136,10 @@ double BossaTimer::getElapsedTime() {
 }
 #endif
 
+void BossaTimer::lap(){
+	lap_time = getElapsedTime();
+}
+
+double BossaTimer::getLap(){
+	return lap_time;
+}

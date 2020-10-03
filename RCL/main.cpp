@@ -1,10 +1,11 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include "SampleDecoder.h"
-#include "MTRand.h"
-#include "BRKGA.h"
-#include "bossa_timer.h"
+#include <queue>
+#include "../Decoders/SampleDecoder.hpp"
+#include "../BRKGA_API/MTRand.hpp"
+#include "../BRKGA_API/BRKGA.hpp"
+#include "../Timer/BossaTimer.hpp"
 #include "ArgPack.hpp"
 #include <fstream>
 
@@ -33,34 +34,19 @@ int main(int argc, char* argv[]) {
 	ifstream f(file);
 
 	int n_points, dim;
-	//dstd::getline(std::cin, s);
-	//std::stringstream st(s);
 	f >> n_points >> dim;
 
 	points = std::vector<std::vector<double> > (n_points);
 	for(int i=0; i<n_points; ++i)
 		points[i] = std::vector<double> (dim);
 
-
-	//for(int d=0;d<dim;++d) {
-		//CLUSTER_L[d] = 1000;
-		//CLUSTER_U[d] = -1000;
-	//}
-
 	for(int i=0;i<n_points;++i) {
-
-		//std::getline(std::cin, s);
-		//std::stringstream st(s);
 		for(int d=0; d<dim; ++d) {
 			f >> points[i][d];
-
 		}
 	}
 
-
-
 	SampleDecoder decoder;			// initialize the decoder
-
 
 
 	const long unsigned rngSeed = ArgPack::ap().rngSeed;	// seed to the random number generator
@@ -77,10 +63,6 @@ int main(int argc, char* argv[]) {
 	double bestValue = -1;
 	double timerToBest;
 	bool verbose = ArgPack::ap().verbose;
-
-
-
-
 
 	int k_max = sqrt(n_points); // 2 <= k <= sqrt(n)
 	int number_pop = k_max - 1;
@@ -113,85 +95,62 @@ int main(int argc, char* argv[]) {
 	}
 	cout << "Best solution " << bestValue << " from pop " << best_population << endl;
 
-
-
 	unsigned generation = 0;		// current generation
 	const unsigned X_INTVL =  ArgPack::ap().exchangeBest;	// exchange best individuals at every 100 generations
-
-
 	const unsigned X_NUMBER = ArgPack::ap().exchangeTop;	// exchange top 2 best
 	const unsigned MAX_GENS = ArgPack::ap().generations;	// run for 1000 gens
+	// Initial evolution
 	do {
-
 		++generation;
-
-
-		if(verbose)
-			cout << "Envolving generation " << generation << " ";
-	/*   Metodo da roleta, escolho um random e vejo em que parte ele
-		 se encontra de acordo com os best de cada população
-
-							| random number
-							|
-							X
-			+--------------+-----+----+--+--++---+-----+
-			|              |     |    |  |  ||   |     |
-			+--------------+-----+----+--+--++---+-----+
-			0             b0     b1                    sum_best         */
-		double r = rng.randDblExc(sum_best);
-		int pop_pick = -1;
-
-		double acum = 0.0;
-
-		// 1, 3, 2, 4, 8, 5, 9           0 1 4 6 10 18 23 32
-
-		for (int i=0;i<number_pop; ++i) {
-			acum += best_values[i];
-			if(r < acum) {
-				pop_pick = i;
-				break;
-			}
+		if(verbose)	cout << "Envolving generation " << generation << " ";
+		for (int i = 0; i < number_pop; ++i) {
+			populations[i]->evolve();	// evolve the population for one generation
+			// Pegar o melhor valor até então e setar o tempo
 		}
+	} while (generation < MAX_GENS/10 and timer.getTime() < cutoff_time/10); // TODO: Verificar isso (quantidade de evoluções)
+	
+	int Kp = populations.size()/2;
 
-		if(pop_pick == -1) // In case of bug
-			pop_pick = number_pop -1;
+	priority_queue<pair<double,int>> ranking_population;
 
-		if(verbose)
-			cout << "We pick pop number " << pop_pick  << " ";
+	// Ordering the population
+	for (int i = 0; i < number_pop ; ++i) {
+		ranking_population.push( { populations[i]->getBestFitness(), i } );
+	}
 
+	// Get K best population
+	vector<int> KBestPopulations(Kp);
+	for (int i = 0; i < Kp; ++i) {
+		pair<double,int> value = ranking_population.top();
+		ranking_population.pop();
+		KBestPopulations[i] = value.second;
+	}
+	// ranking_population.clear();
 
-		populations[pop_pick]->evolve();	// evolve the population for one generation
-
-		double best_temp = (-1)* populations[pop_pick]->getBestFitness();
-		if(verbose)
-			cout << best_temp << endl;
-
-
-		if( best_temp > best_values[pop_pick]) // If improve the pop best
-		{
-			sum_best = sum_best + best_temp - best_values[pop_pick]; // update sum of best (sum new and subtract old)
-			best_values[pop_pick] = best_temp;
+	// Evolving the K best population
+	do {
+		++generation;
+		if(verbose)	cout << "Envolving generation " << generation << " ";
+		for (int i = 0; i < Kp ; ++i) {
+			populations[ KBestPopulations[i] ]->evolve();	// evolve the population for one generation
+			// Pegar o melhor valor até então e setar o tempo
 		}
-		if(best_temp > bestValue) {
-			timerToBest = timer.getTime();
-			bestValue = best_temp;
-			best_population = pop_pick;
+	} while (generation < MAX_GENS and timer.getTime() < cutoff_time); // TODO: Verificar isso (quantidade de evoluções)
 
-			cout << "New best " << bestValue << " from pop " << best_population << endl;
-		}
-
-		//if((++generation) % X_INTVL == 0) { // VEJA se usa isso
-		//	algorithm.exchangeElite(X_NUMBER);	// exchange top individuals
-		//}
-
-
-
-	} while (generation < MAX_GENS and timer.getTime() < cutoff_time);
 	timer.pause();
 
-		cout << "Best solution " << bestValue << " from pop " << best_population << " k = " << best_population +2 << endl;
-		std::cout << "Total time = " << timer.getTime() << std::endl;
-		std::cout << "Time to Best ttb = " << timerToBest << std::endl;
+	double ans = 0;
+	int clusters = 0;
+	for (int i = 0; i < number_pop ; ++i) {
+		if( ans < -populations[i]->getBestFitness() ){
+			ans = -populations[i]->getBestFitness();
+			clusters = i + 2;
+		}
+	}
+
+	cout << "Best solution " << ans << " k = " << clusters << endl;
+	std::cout << "Total time = " << timer.getTime() << std::endl;
+	std::cout << "Time to Best ttb = " << timerToBest << std::endl;
 
 
 	for(int i=0;i<number_pop; ++i) {

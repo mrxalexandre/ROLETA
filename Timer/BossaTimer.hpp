@@ -7,6 +7,7 @@
 #ifndef bossa_timer_h
 #define bossa_timer_h
 
+#define INFINITE_TIME 10e100
 
 #ifndef BOSSA_RUSAGE
 #ifndef BOSSA_CLOCK
@@ -36,12 +37,17 @@
 #include <sys/resource.h>
 #endif
 
+#include <assert.h>
+
 class BossaTimer {
 
 	private:
 		bool running; //is it running now? (false -> paused)
 		double base_time; //time of previous runs since last reset
 		double max_time;  //reference time  
+		double lap_time;
+
+		static BossaTimer *def_ap_timer;
 
 	#ifdef BOSSA_CLOCK 
 		double getUserTime();
@@ -60,12 +66,12 @@ class BossaTimer {
 		double getElapsedTime(); //time since last resume/start (does not include base_time)
 		void startTiming();
 
-		
 		void setBaseTime (double bt); 
 
 	public:
 		//BossaTimer (); //reset
 		BossaTimer (bool start=false);
+		~BossaTimer() { def_ap_timer = 0; }
 		double getTime(); //return current time
 		double pause();   //pause and return current time
 		double resume();  //continue if paused, start if reset (return time before resuming)
@@ -75,7 +81,12 @@ class BossaTimer {
 		void setMaxTime (double mt);
 		double getMaxTime();
 		double getTimeToExpire(); 
-		bool isTimeExpired ();    
+		bool isTimeExpired();
+
+		void lap();
+		double getLap();
+		
+		static BossaTimer &getInstance() { assert(def_ap_timer); return *def_ap_timer; }
 };
 
 #endif

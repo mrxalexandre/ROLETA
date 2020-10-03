@@ -48,7 +48,7 @@
 #include <algorithm>
 #include <exception>
 #include <stdexcept>
-#include "Population.h"
+#include "Population.hpp"
 
 template< class Decoder, class RNG >
 class BRKGA {
