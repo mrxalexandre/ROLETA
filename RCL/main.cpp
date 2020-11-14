@@ -152,6 +152,18 @@ int main(int argc, char* argv[]) {
 	std::cout << "Total time = " << timer.getTime() << std::endl;
 	std::cout << "Time to Best ttb = " << timerToBest << std::endl;
 
+	// Show answer:
+	vector<double> ch = populations[clusters-2]->getBestChromosome();
+	vector<vector<int>> allocate = vec_decoders[clusters-2]->answer(ch);
+
+	for (unsigned i = 0; i < allocate.size() ; ++i) {
+		cout << "Cluter " << i+1 << " is : " << allocate[i][0] << endl;
+		cout << "Points:";
+		for (unsigned j = 1; j < allocate[i].size(); ++j) {
+			cout << " " << allocate[i][j];
+		}
+		cout << endl;
+	}
 
 	for(int i=0;i<number_pop; ++i) {
 		delete populations[i];
