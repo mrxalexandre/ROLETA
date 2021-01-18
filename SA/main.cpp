@@ -102,6 +102,7 @@ int main(int argc, char* argv[]) {
 	const unsigned MAX_GENS = ArgPack::ap().generations;	// run for 1000 gens
 
 	float temperature = 1<<20; // TODO: Initial temperature
+	float alpha = 0.9;
 	unsigned ref_population = best_population;
 
 	// Initial evolution
@@ -134,7 +135,7 @@ int main(int argc, char* argv[]) {
 		if ( delta < 1e-4 or exp_value > accept ){
 			ref_population = i_population;
 		}
-
+		temperature = alpha * temperature;
 	} while (generation < MAX_GENS and timer.getTime() < cutoff_time); // TODO: Verificar isso (quantidade de evoluções)
 	
 	double ans = 0;
