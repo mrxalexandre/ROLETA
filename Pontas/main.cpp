@@ -101,7 +101,7 @@ int main(int argc, char* argv[]) {
 	// const unsigned X_NUMBER = ArgPack::ap().exchangeTop;	// exchange top 2 best
 	const unsigned MAX_GENS = ArgPack::ap().generations;	// run for 1000 gens
 
-	int k_idx = (rng.randInt(1)) ? 1 : number_pop - 1;
+	int k_idx = ( rng.randExc() < 0.5 ) ? 1 : number_pop - 1;
 	int not_improvement = 0;
 	// Initial evolution
 	do {
