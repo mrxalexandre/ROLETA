@@ -101,8 +101,8 @@ int main(int argc, char* argv[]) {
 	// const unsigned X_NUMBER = ArgPack::ap().exchangeTop;	// exchange top 2 best
 	const unsigned MAX_GENS = ArgPack::ap().generations;	// run for 1000 gens
 
-	float temperature = 1<<20; // TODO: Initial temperature
-	float alpha = 0.9;
+	float temperature = 1<<20; // TODO: paramêtro
+	float alpha = 0.9; // TODO: paramêtro
 	unsigned ref_population = best_population;
 
 	// Initial evolution
@@ -111,24 +111,24 @@ int main(int argc, char* argv[]) {
 		unsigned i_population = ref_population;
 		
 		while( i_population == ref_population ){
-			i_population = rand() % number_pop;
+			i_population = rng.randInt(number_pop - 1);
 		}
 		populations[ref_population]->evolve();
 		populations[i_population]->evolve();
 		
 		// Verificar o sinal dos dois ifs
-		if ( bestValue < populations[ref_population]->getBestFitness() ){
+		if ( bestValue < -populations[ref_population]->getBestFitness() ){
 			best_population = ref_population;
-			bestValue = populations[ref_population]->getBestFitness();
+			bestValue = -populations[ref_population]->getBestFitness();
 			timerToBest = timer.getTime();
 		}
-		if ( bestValue < populations[i_population]->getBestFitness() ){
+		if ( bestValue < -populations[i_population]->getBestFitness() ){
 			best_population = i_population;
-			bestValue = populations[i_population]->getBestFitness();
+			bestValue = -populations[i_population]->getBestFitness();
 			timerToBest = timer.getTime();
 		}
 		
-		float delta = populations[ref_population]->getBestFitness() - populations[i_population]->getBestFitness();
+		float delta = - populations[ref_population]->getBestFitness() + populations[i_population]->getBestFitness();
 		float exp_value = exp( -delta/temperature );
 		float accept = ((float)rand()/(float)(RAND_MAX));
 		// Verificar o sinal do delta

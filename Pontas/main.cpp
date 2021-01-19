@@ -113,9 +113,9 @@ int main(int argc, char* argv[]) {
 			populations[ k_idx - 1 + i ]->evolve();
 			if ( fabs(populations[ k_idx - 1 + i ]->getBestFitness() - value) > 1e-4 ){
 				improvement = true;
-				if ( bestValue < populations[ k_idx - 1 + i ]->getBestFitness() ){
+				if ( bestValue < -populations[ k_idx - 1 + i ]->getBestFitness() ){
 					best_population = k_idx - 1 + i;
-					bestValue = populations[ k_idx - 1 + i ]->getBestFitness();
+					bestValue = -populations[ k_idx - 1 + i ]->getBestFitness();
 					timerToBest = timer.getTime();
 				}
 			}

@@ -107,7 +107,7 @@ int main(int argc, char* argv[]) {
 			q_sum += q[i]; 
 		}
 		
-		double r = rng.randDblExc(sum_best) * q_sum;
+		double r = rng.randExc() * q_sum;
 		int pop_pick = -1;
 		double acum = 0;
 		
@@ -126,7 +126,7 @@ int main(int argc, char* argv[]) {
 		
 		if( -populations[pop_pick]->getBestFitness() > bestValue) {
 			timerToBest = timer.getTime();
-			bestValue = populations[pop_pick]->getBestFitness();
+			bestValue = -populations[pop_pick]->getBestFitness();
 			best_population = pop_pick;
 			cout << "New best " << bestValue << " from pop " << best_population << endl;
 		}
