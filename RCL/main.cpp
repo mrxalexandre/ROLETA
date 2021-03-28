@@ -85,6 +85,7 @@ int main(int argc, char* argv[]) {
 		if(best_values[i] > bestValue) { // bestValue é o melhor global
 			bestValue = best_values[i];
 			best_population = i;
+			timerToBest = timer.getTime();
 		}
 
 		if(verbose) {
@@ -106,6 +107,11 @@ int main(int argc, char* argv[]) {
 		for (int i = 0; i < number_pop; ++i) {
 			populations[i]->evolve();	// evolve the population for one generation
 			// Pegar o melhor valor até então e setar o tempo
+			if( (-1)*populations[i]->getBestFitness() > bestValue ){
+				bestValue = (-1)*populations[i]->getBestFitness();
+				best_population = i;
+				timerToBest = timer.getTime();
+			}
 		}
 	} while (generation < MAX_GENS/10 and timer.getTime() < cutoff_time/10); // TODO: Verificar isso (quantidade de evoluções)
 	
@@ -134,6 +140,11 @@ int main(int argc, char* argv[]) {
 		for (int i = 0; i < Kp ; ++i) {
 			populations[ KBestPopulations[i] ]->evolve();	// evolve the population for one generation
 			// Pegar o melhor valor até então e setar o tempo
+			if( (-1)*populations[i]->getBestFitness() > bestValue ){
+				bestValue = (-1)*populations[i]->getBestFitness();
+				best_population = i;
+				timerToBest = timer.getTime();
+			}
 		}
 	} while (generation < MAX_GENS and timer.getTime() < cutoff_time); // TODO: Verificar isso (quantidade de evoluções)
 
@@ -154,16 +165,16 @@ int main(int argc, char* argv[]) {
 
 	// Show answer:
 	vector<double> ch = populations[clusters-2]->getBestChromosome();
-	vector<vector<int>> allocate = vec_decoders[clusters-2]->answer(ch);
+	// vector<vector<int>> allocate = vec_decoders[clusters-2]->answer(ch);
 
-	for (unsigned i = 0; i < allocate.size() ; ++i) {
-		cout << "Cluter " << i+1 << " is : " << allocate[i][0] << endl;
-		cout << "Points:";
-		for (unsigned j = 1; j < allocate[i].size(); ++j) {
-			cout << " " << allocate[i][j];
-		}
-		cout << endl;
-	}
+	// for (unsigned i = 0; i < allocate.size() ; ++i) {
+	// 	cout << "Cluter " << i+1 << " is : " << allocate[i][0] << endl;
+	// 	cout << "Points:";
+	// 	for (unsigned j = 1; j < allocate[i].size(); ++j) {
+	// 		cout << " " << allocate[i][j];
+	// 	}
+	// 	cout << endl;
+	// }
 
 	for(int i=0;i<number_pop; ++i) {
 		delete populations[i];
